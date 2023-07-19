@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-const pageTitle = "XREAL";
-let blackMenu = false
+const pageTitle = "Home Page1";
 ---
 
-<BaseLayout pageTitle={pageTitle} blackMenu={blackMenu} client:load>
-  <!-- <Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there"]} />  -->
+<BaseLayout pageTitle={pageTitle}>
+  <!-- <h2>My awesome blog subtitle</h2>
+  <Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there"]} /> -->
   <div class="section1">
     <div class="imgs">
       <div class="img img1"></div>
@@ -133,7 +133,6 @@ let blackMenu = false
   // 减少重复的dom查询
   const img1 = document.querySelector(".img1");
   const img2 = document.querySelector(".img2");
-  const section2 = document.querySelector(".section2");
   const vh = window.innerHeight;
   const contentPX = vh * 1.8; //获取滚动距离 确保滚动完的时候黑人才滚走
   const img2PX = vh * 0.6;
@@ -144,15 +143,10 @@ let blackMenu = false
     requestAnimationFrame(parallaxScroll);
   }
   window.addEventListener("scroll", handleScroll);
-  
   function parallaxScroll() {
     //获取滚动距离
     const scrolled = window.pageYOffset || document.documentElement.scrollTop;
     // 计算位置，并设置样式
-    var rect = section2.getBoundingClientRect();
-    var isTopAboveViewport = rect.top < 0;
-    if(!isTopAboveViewport){
-      
     img1.style.top =
       window.innerWidth > 768
         ? `${200 - (scrolled / contentPX) * (200 + img1PX)}px`
@@ -161,15 +155,5 @@ let blackMenu = false
       window.innerWidth > 768
         ? `${240 - (scrolled / contentPX) * (240 + img2PX)}px`
         : `${100 - (scrolled / contentPX) * (100 + img2PX)}px`;
-      } else{
-        console.log("yes")
-        blackMenu=true
-      }
-
-    
   }
-
-
-  
-
 </script>

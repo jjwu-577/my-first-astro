@@ -35,7 +35,7 @@ const skillColor = "red";
     </style>
   </head>
   <body>
-    <!-- <Navigation />
+    <Navigation />
     <h1>{pageTitle}</h1>
     <h2>... and my new Astro site!</h2>
 
@@ -68,64 +68,7 @@ const skillColor = "red";
       ) : (
         <p>My goal is not 3 days.</p>
       )
-    } -->
-    <button id="myButton">Start AR</button>
-    <div>支持webxr吗？</div><div id="describe"></div></div>
-    <div>position:<div id="position"></div></div>
-    <div>Orientation:<div id="Orientation"></div></div>
-    <!-- <Footer /> -->
-
-    <script>
-      const button = document.getElementById("myButton");
-      const des = document.getElementById("describe");
-      const pos = document.getElementById("position");
-      const Orient = document.getElementById("Orientation");
-      
-      
-      button.addEventListener("click", () => {
-        startAR();
-      });
-      async function startAR() {
-        try {
-          // 检查浏览器是否支持 WebXR
-          if (!navigator.xr) {
-            console.log("WebXR not supported in this browser.");
-            des.innerHTML="WebXR not supported in this browser.";
-            return;
-          }
-
-          // 请求 AR 会话
-          const xrSession = await navigator.xr.requestSession("immersive-ar");
-
-          // 设置设备姿势信息更新回调函数
-          xrSession.addEventListener("end", () => {
-            console.log("AR session ended.");
-          });
-
-          // 开始渲染 AR 内容并获取设备姿势信息
-          function onXRFrame(timestamp, xrFrame) {
-            const pose = xrFrame.getViewerPose();
-            if (pose) {
-              const position = pose.transform.position;
-              const orientation = pose.transform.orientation;
-
-              // 在这里处理获取的设备姿势信息，例如更新 3D 场景等操作
-              console.log("Position:", position);
-              console.log("Orientation:", orientation);
-              pos.innerHTML=position;
-              Orient.innerHTML=orientation;
-            }
-
-            xrSession.requestAnimationFrame(onXRFrame);
-          }
-
-          xrSession.requestAnimationFrame(onXRFrame);
-        } catch (error) {
-          des.innerHTML=error;
-          console.error("Error starting AR:", error);
-          
-        }
-      }
-    </script>
+    }
+    
   </body>
 </html>

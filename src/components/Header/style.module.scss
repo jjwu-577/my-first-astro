@@ -1,0 +1,85 @@
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    padding: 35px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+  
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+    }
+  
+    .logo {
+      margin: 0 30px;
+    }
+  
+    .user {
+      margin: 0 30px;
+      width: 108px;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    .nav {
+      display: flex;
+      flex-direction: row;
+  
+      &Item {
+        position: relative;
+        margin: 0 40px;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+  
+        &Text {
+          font-size: 16px;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.9);
+          text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+  
+        &Label {
+          margin: 10px 0;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.8);
+          text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+  
+        &:after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          display: block;
+          content: "";
+          background-color: #fff;
+          transition: all 0.3s cubic-bezier(0.21, 0.01, 0.21, 0.96);
+        }
+  
+        &:hover:after {
+          width: 100%;
+        }
+      }
+  
+      .active:after {
+        width: 100%;
+      }
+    }
+  
+    @media (max-width: 1200px) {
+      .nav {
+        display: none;
+      }
+    }
+  }

@@ -1,8 +1,9 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../styles/global.css';
-const { pageTitle } = Astro.props;
+import '../styles/reset.css';
+const { pageTitle,blackMenu } = Astro.props;
 ---
 <html lang="en">
   <head>
@@ -13,12 +14,11 @@ const { pageTitle } = Astro.props;
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Header />
-    <h1>{pageTitle}</h1>
+    <Header blackMenu={blackMenu} client:load />
     <slot />
     <Footer />
-    <script>
+    <!-- <script>
       import "../scripts/menu.js";
-    </script>
+    </script> -->
   </body>
 </html>

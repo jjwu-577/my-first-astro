@@ -1,0 +1,25 @@
+/* colors
+用法  color: $color-blue;
+-------------------------- */
+$color-red: #FF3300 !default;
+$color-blue: #46D3EC !default;
+$color-green: #00FF55 !default;
+$color-purple: #5500FF !default;
+$color-warning: #FF8A00 !default;
+$color-success: #34F55F !default;
+$color-fail: #FF3A52 !default;
+$color-gray-bg: #F2F2F2 !default;
+$color-gray-f3: #F3F3F3 !default;
+$color-yellowgreen: #89FF00 !default;
+
+// $color-black10 代表设计图中透明度10%的黑色，以下颜色主要用于文字
+$color-black10: #E6E6E6 !default;
+$color-black20: #cccccc !default;
+$color-black30: #B3B3B3 !default;
+$color-black40: #999999 !default;
+$color-black60: #666666 !default;
+$color-black80: #333333 !default;
+
+/* 样式扩展
+用法  @extend %classname
+-------------------------- */

@@ -1,0 +1,36 @@
+// @font-face {  
+//     font-family: 'Poppins-Regular';  /*重命名字体名 */
+//     src: url('Poppins-Regular.ttf'); /*引入字体*/
+//     font-weight: normal;  
+//     font-style: normal;  
+//   }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: 800;
+    src: url('Poppins-ExtraBold.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: 700;
+    src: url('Poppins-Bold.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: 500;
+    src: url('Poppins-Medium.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: 400;
+    src: url('Poppins-Regular.ttf') format('truetype');
+  }
+  
+  .bold-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  

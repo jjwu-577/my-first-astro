@@ -1,0 +1,9 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import NebulaForMac from "@components/NebulaForMac";
+const pageTitle = "Nebula For Mac";
+---
+
+<BaseLayout pageTitle={pageTitle} >
+    <NebulaForMac client:load />
+</BaseLayout>
