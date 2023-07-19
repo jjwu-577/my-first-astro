@@ -1,29 +1,131 @@
 ---
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+const pageTitle = "About Me";
+const identity = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Technical Writer",
+  hobbies: ["photography", "birdwatching", "baseball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+const skillColor = "red";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>About</title>
+    <title>{pageTitle}</title>
+    <style define:vars={{ skillColor }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: var(--skillColor);
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-    <h1>About Me</h1>
+    <!-- <Navigation />
+    <h1>{pageTitle}</h1>
     <h2>... and my new Astro site!</h2>
 
-    <p>
-      I am working through Astro's introductory tutorial. This is the second
-      page on my website, and it's the first one I built myself!
-    </p>
+    <ul>
+      <li>My name is {identity.firstName}.</li>
+      <li>
+        I live in {identity.country} and I work as a {identity.occupation}.
+      </li>
+      {
+        identity.hobbies.length >= 2 && (
+          <li>
+            Two of my hobbies are: {identity.hobbies[0]} and{" "}
+            {identity.hobbies[1]}
+          </li>
+        )
+      }
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
 
-    <p>
-      This site will update as I complete more of the tutorial, so keep checking
-      back and see how my journey is going!
-    </p>
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {
+      goal === 3 ? (
+        <p>My goal is to finish in 3 days.</p>
+      ) : (
+        <p>My goal is not 3 days.</p>
+      )
+    } -->
+    <button id="myButton">Start AR</button>
+    <div>支持webxr吗？</div><div id="describe"></div></div>
+    <div>position:<div id="position"></div></div>
+    <div>Orientation:<div id="Orientation"></div></div>
+    <!-- <Footer /> -->
+
+    <script>
+      const button = document.getElementById("myButton");
+      const des = document.getElementById("describe");
+      const pos = document.getElementById("position");
+      const Orient = document.getElementById("Orientation");
+      
+      
+      button.addEventListener("click", () => {
+        startAR();
+      });
+      async function startAR() {
+        try {
+          // 检查浏览器是否支持 WebXR
+          if (!navigator.xr) {
+            console.log("WebXR not supported in this browser.");
+            des.innerHTML="WebXR not supported in this browser.";
+            return;
+          }
+
+          // 请求 AR 会话
+          const xrSession = await navigator.xr.requestSession("immersive-ar");
+
+          // 设置设备姿势信息更新回调函数
+          xrSession.addEventListener("end", () => {
+            console.log("AR session ended.");
+          });
+
+          // 开始渲染 AR 内容并获取设备姿势信息
+          function onXRFrame(timestamp, xrFrame) {
+            const pose = xrFrame.getViewerPose();
+            if (pose) {
+              const position = pose.transform.position;
+              const orientation = pose.transform.orientation;
+
+              // 在这里处理获取的设备姿势信息，例如更新 3D 场景等操作
+              console.log("Position:", position);
+              console.log("Orientation:", orientation);
+              pos.innerHTML=position;
+              Orient.innerHTML=orientation;
+            }
+
+            xrSession.requestAnimationFrame(onXRFrame);
+          }
+
+          xrSession.requestAnimationFrame(onXRFrame);
+        } catch (error) {
+          des.innerHTML=error;
+          console.error("Error starting AR:", error);
+          
+        }
+      }
+    </script>
   </body>
 </html>
